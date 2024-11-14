@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<div>
+    <h1>Edit User</h1>
+</div>
+
+<div>
+    <a th:href="@{/login}">login</a><br>
+    <a th:href="@{/logout}">logout</a><br>
+</div>
+
+
+<div>
+    <form th:action="@{/admin/updateAndSave}" th:method="POST">
+        <p><label for="id">ID:</label>
+            <input type="text" th:field="${user.id}" id="id" onkeydown="return false"/><br></p>
+
+        <p><label for="name">First name</label>
+            <input type="text" th:field="${newUser.username}" id="name"/><br></p>
+
+        <p><label for="surname"> Last name:</label>
+            <input type="text" th:field="${newUser.lastName}" id="surname"/><br></p>
+
+        <p><label for="age"> Age:</label>
+            <input type="text" th:field="${newUser.age}" id="age"/><br></p>
+
+        <p><label for="email">Email:</label>
+            <input type="text" th:field="${newUser.email}" id="email"/><br></p>
+
+        <p><label for="password"> Password:</label>
+            <input type="text" th:field="${newUser.password}" id="password"/><br></p>
+
+        <p><label for="role"> Role:</label></p>
+
+        <ul>
+            <li th:each="r:${roles}">
+                <label>
+                    <input type="checkbox"
+                           id="role"
+                           th:checked="${roles}"
+                           th:name="roles"
+                           th:value="${r.getId()}"
+                           th:text="${r.getName()}">
+                </label>
+
+            </li>
+        </ul>
+
+
+
+        <p><input type="submit" value="Edit User"/></p>
+
+    </form>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<div>
+    <h1>Hello User</h1>
+    <a th:href="@{/welcome}">Main Page</a><br>
+    <a th:href="@{/user}">User Page</a><br>
+    <a th:href="@{/admin/showList}">List of Users</a><br>
+</div>
+<div>
+    <a th:href="@{/login}">login</a><br>
+    <a th:href="@{/logout}">logout</a><br>
+</div>
+<div>
+    <form th:action="@{/admin/showList}" th:method="POST" th:object="${user}">
+        <p><label for="name">First name</label>
+            <input type="text" th:field="${user.username}" id="name"/><br></p>
+
+        <p><label for="surname"> Last name:</label>
+            <input type="text" th:field="${user.lastName}" id="surname"/><br></p>
+
+        <p><label for="age">Age:</label>
+            <input type="text" maxlength="3" th:field="${user.age}" id="age"/><br></p>
+
+        <p><label for="email">Email:</label>
+            <input type="text" th:field="${user.email}" id="email"/><br></p>
+
+        <p><label for="password">Password:</label>
+            <input type="text" th:field="${user.password}" id="password"/><br></p>
+
+<!--        <p><label for="form"> Role:</label>-->
+
+<!--            <select  th:field="*{roles}" name="roles"  id="form" size="2" multiple="multiple">-->
+<!--                <option th:each="r : ${roles}"-->
+<!--                        th:value="${r.getId()}"-->
+<!--                        th:text="${r.getName()}"-->
+<!--                       ></option>-->
+<!--            </select>-->
+
+        <p><label for="roles">Roles:</label>
+        <ul>
+            <li th:each="r:${roles}">
+                <label>
+                    <input type="checkbox"
+                           id="roles"
+                           th:checked="${roles}"
+                           th:name="roles"
+                           th:value="${r.getId()}"
+                           th:text="${r.getName()}">
+                </label>
+
+            </li>
+        </ul>
+
+
+
+
+
+
+        <p><input type="submit" value="Save User"/></p>
+
+    </form>
+
+
+</div>
+
+</body>
+</html>
+
+
